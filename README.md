@@ -94,7 +94,25 @@ ng version
 git --version
 code --version
 ```
-fghfghfgh
+
+Un altre pas que s'ha de fer és revisar les característiques del sistema operatiu com l'espai disponible que és es té per treballar, per poder realitzar deixo les següents comandes o l'executable que deixo en el repositori.
+
+```bash
+# Informació Completa del Sistema Operatiu
+systeminfo | findstr /I /C:"OS" /C:"Sistema"
+
+# Nom del Sistema Operatiu
+systeminfo | findstr /B /C:"Nombre del sistema operativo" /C:"Versión del sistema operativo"
+
+# Sistema Operatiu i Versió
+powershell -Command "Get-CimInstance Win32_OperatingSystem | Select-Object Caption, Version"
+
+# Verificar espai disponible
+powershell -Command "Get-PSDrive C | Select-Object Used, Free"
+
+# erificar espai disponible amb GB
+powershell -Command "Get-PSDrive C | Select-Object @{Name='Used (GB)'; Expression={[math]::Round($_.Used / 1GB, 2)}}, @{Name='Free (GB)'; Expression={[math]::Round($_.Free / 1GB, 2)}}"
+```
 
 - **Comades de GitHub per un repositori Git**
 
