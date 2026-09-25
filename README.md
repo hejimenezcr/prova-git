@@ -82,8 +82,6 @@ Abans de començar, assegura't de tenir instal·lades les següents eines al teu
 
 ## 3. Guia d'Instal·lació
 
-(Revisar Poner el listado de comandas del proyecto)
-
 Una vegada feta en el [2. Requisits del Sistema](#2-requisits-del-sistema), podrem verificar versions d'eines amb les següents comandes o el executable que deixo en el repositori.
 
 ```bash
@@ -209,38 +207,14 @@ En instal·lar el mòdul NPM el repositori Git no pujarà el seu contingut, en e
 .gitignore
 ```
 
-xx
+Entrarem dins del projecte d'Angular.
 
 ```bash
-npm install
+cd C:\ZPublico\Repositorios_GitHub\prova-git\ioc-angular-prova-git-hector
 ```
 
-xx
+Instal·larem les dependències NPM.
 
-```bash
-npm install
-```
-
-xx
-
-```bash
-npm install
-```
-
-xx
-
-```bash
-npm install
-```
-
-xx
-
-
-
-
-
-
-Instal·la les dependències:
 ```bash
 npm install
 ```
@@ -251,6 +225,10 @@ ng serve --open
 ```
 
 L'aplicació s'obrirà automàticament a http://localhost:4200 amb suport de recàrrega en directe (Hot Reload).
+
+Quan executam la comanda, ens demana si volem utilitzar el navegador que tenim predefinit. Si li diem que sí, s'obrirà el navegador de forma automàtica. Tot canvi que realitzem als fitxers de configuració es reflectirà de forma automàtica.
+
+Quan vulguem tancar el servei, haurem d'anar al terminal, prémer ```Ctrl + C``` i es tancarà."
 
 
 ------------------------------------------------------
@@ -264,6 +242,79 @@ npm start / ng serve,Executa el servidor local de desenvolupament.
 ng build,Compila l'aplicació i genera els arxius de producció a /dist.
 ng test,Executa les proves unitàries (unit tests).
 ng lint,Analitza el codi a la cerca d'errors d'estil i sintaxi.
+
+(Seguir revisando)
+
+IMPORTATE DE LEER
+
+Carpetes principals:
+
+src/app/ → Components i codi de l'aplicació
+public/ → Recursos estàtics (imatges, fonts, favicon.ico); en versions antigues d'Angular aquesta carpeta era src/assets/
+node_modules/ → Dependències npm (NO pujar a Git)
+Fitxers clau:
+
+angular.json → Configuració Angular CLI (aquí queda registrat que els components es generen amb estil SCSS i noms *.component.*)
+package.json → Dependències i scripts npm
+tsconfig.json → Configuració TypeScript
+.gitignore → Fitxers exclosos de Git (ja inclou /node_modules, /dist i /.angular/cache)
+src/app/app.component.ts → Component arrel. Amb Angular 22 la classe generada es diu App, tot i que el fitxer conserva el nom app.component.ts
+src/app/app.config.ts → Configuració global de l'aplicació (proveïdors, entre ells provideRouter(routes))
+src/app/app.routes.ts → Mapa de rutes, de moment buit
+src/main.ts → Punt d'entrada: bootstrapApplication(App, appConfig)
+
+Obriu src/app/app.component.ts i observeu el contingut generat:
+
+import { Component, signal } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
+
+@Component({
+  imports: [RouterOutlet],
+  selector: 'app-root',
+  styleUrl: './app.component.scss',
+  templateUrl: './app.component.html',
+})
+export class App {
+  protected readonly title = signal('ioc-angular-[nom-app]-[nom-alumne]');
+}
+
+
+->  Pas 4: Verificar package.json
+
+{
+  "name": "ioc-angular-[nom-app]-[nom-alumne]",
+  "version": "0.0.0",
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve",
+    "build": "ng build",
+    "watch": "ng build --watch --configuration development",
+    "test": "ng test"
+  },
+  "private": true,
+  "packageManager": "npm@11.12.1",
+  "dependencies": {
+    "@angular/common": "^22.1.0",
+    "@angular/compiler": "^22.1.0",
+    "@angular/core": "^22.1.0",
+    "@angular/forms": "^22.1.0",
+    "@angular/platform-browser": "^22.1.0",
+    "@angular/router": "^22.1.0",
+    "rxjs": "~7.8.0",
+    "tslib": "^2.3.0"
+  },
+  "devDependencies": {
+    "@angular/build": "^22.1.7",
+    "@angular/cli": "^22.1.7",
+    "@angular/compiler-cli": "^22.1.0",
+    "jsdom": "^28.0.0",
+    "prettier": "^3.8.1",
+    "typescript": "~6.0.2",
+    "vitest": "^4.0.8"
+  }
+}
+
+
 
 ------------------------------------------------------
 
