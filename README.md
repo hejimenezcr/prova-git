@@ -6,6 +6,16 @@
   <b>Una breu descripció d'una frase sobre la funció principal de la teva aplicació.</b>
 </p>
 
+<p align="center">
+  <b>Un projecte Angular base amb el nom ioc-angular-[nom-app]-[nom-alumne]</b>
+</p>
+
+1. Estructura moderna (standalone components)
+2. Sistema de rutes activat
+3. Preprocessador SCSS
+4. Control de versions Git
+5. Publicació a GitHub
+
 ------------------------------------------------------
 
 ## 📑 Índex de Continguts
@@ -74,6 +84,33 @@ Abans de començar, assegura't de tenir instal·lades les següents eines al teu
 
 (Revisar Poner el listado de comandas del proyecto)
 
+Una vegada feta en el [2. Requisits del Sistema](#2-requisits-del-sistema), podrem verificar versions d'eines amb les següents comandes o el executable que deixo en el repositori.
+
+```bash
+# Windows PowerShell
+node --version
+npm --version
+ng version
+git --version
+code --version
+```
+fghfghfgh
+
+- **Comades de GitHub per un repositori Git**
+
+```bash
+echo "# prova-git" >> README.md 
+git init 
+git add README.md 
+git commit -m "primer commit" 
+git branch -M main 
+git remote add origin https://github.com/hejimenezcr/prova-git.git
+git push -u origin main
+```
+
+dsad
+
+------
 
 Sigueix aquests passos per clonar el repositori i executar el projecte localment:
 
@@ -83,6 +120,7 @@ Sigueix aquests passos per clonar el repositori i executar el projecte localment
 ```
 
 Navega fins al directori del projecte:
+
 ```bash
 cd nom-del-projecte
 ```
@@ -132,6 +170,31 @@ nom-del-projecte/
 ├── package.json          # Manifest de dependències i scripts
 └── tsconfig.json         # Configuració base de TypeScript
 ```
+
+(Enteoria se parace a esta despues hay que hace un dir/tree para verificar)
+
+```text
+ioc-angular-[nom-app]-[nom-alumne]/
+├── public/                (recursos estàtics)
+├── src/
+│   ├── app/
+│   │   ├── components/    (preparatori, amb .gitkeep)
+│   │   ├── services/      (preparatori, amb .gitkeep)
+│   │   ├── models/        (preparatori, amb .gitkeep)
+│   │   ├── pages/         (preparatori, amb .gitkeep)
+│   │   ├── app.component.ts / .html / .scss
+│   │   ├── app.routes.ts
+│   │   └── app.config.ts
+│   ├── index.html
+│   ├── main.ts
+│   └── styles.scss
+├── angular.json
+├── package.json
+├── tsconfig.json
+├── README.md
+└── .gitignore
+```
+
 ------------------------------------------------------
 
 ## 6. Tecnologies Utilitzades
