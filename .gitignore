@@ -1,0 +1,169 @@
+# === ARCHIVOS DEL SISTEMA OPERATIVO ===
+# Ignora basura que crean Windows y Mac automáticamente
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Linux
+*~
+
+# === CONFIGURACIONES DE EDITORES DE CÓDIGO ===
+# ARCHIVOS DE EDITORES / IDE
+# Ignora carpetas locales de tus programas de desarrollo
+
+# Visual Studio Code
+.vscode/
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+!.vscode/mcp.json
+.history/*
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# IDEs and editors
+.idea/
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# See https://docs.github.com/get-started/getting-started-with-git/ignoring-files for more about ignoring files.
+
+# Compiled output
+/dist
+/tmp
+/out-tsc
+/bazel-out
+
+# === COMPILADOS Y BINARIOS ===
+# === Node.js & JavaScript (HTML/CSS/Bootstrap) ===
+# (Ya cubierto en la lista anterior con node_modules/ y dist/)
+# No guarda archivos generados automáticamente por el ordenador
+dist/
+build/
+out/
+.npm/
+.eslintcache
+*.exe
+*.dll
+*.so
+*.dmg
+
+# === DEPENDENCIAS Y CARPETAS PESADAS ===
+# Ignora librerías externas que se pueden volver a descargar
+# Node
+/node_modules
+node_modules/
+bower_components/
+vendor/
+.pnp/
+npm-debug.log
+yarn-error.log
+
+# Miscellaneous
+/.angular/cache
+.sass-cache/
+/connect.lock
+/coverage
+/libpeerconnection.log
+testem.log
+/typings
+__screenshots__/
+
+# COBERTURA DE TESTS
+coverage/
+.nyc_output/
+
+# === REGLAS ESPECÍFICAS PARA TUS TECNOLOGÍAS ===
+
+# === Python ===
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+.pytest_cache/
+.venv
+venv/
+ENV/
+
+# === Java ===
+*.class
+*.war
+*.ear
+*.nar
+
+# Carpetas de herramientas de Java (Maven/Gradle)
+target/
+.gradle/
+build/
+
+# === PHP ===
+.phpunit.result.cache
+.php_cs.cache
+vendor/
+
+# === Bases de datos (SQL Server, MariaDB) ===
+# Archivos de datos locales, copias de seguridad y logs de datos
+*.sql.gz
+*.sql.zip
+*.log
+App_Data/
+*.mdf
+*.ldf
+
+# === Editor Vim /Vi ===
+*.swp
+*.swo
+
+# === ARCHIVOS SECRETOS Y CREDENCIALES ===
+# ARCHIVOS LOCALES DEL PROYECTO
+# VARIABLES DE ENTORNO
+# Impide que tus contraseñas o claves de API se suban a internet
+.env
+.env.*
+.env.local
+.env.*.local
+.env.development.local
+.env.test.local
+.env.production.local
+!.env.example
+*.pem
+*.key
+certs/
+pfx/
+
+
+# === ARCHIVOS TEMPORALES Y LOGS ===
+# Evita guardar registros de errores temporales
+# LOGS
+logs/
+*.log
+*.log.*
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.cache/
+
+# ARCHIVOS TEMPORALES
+tmp/
+temp/
+*.tmp
+*.temp
+
+# ============================================
+

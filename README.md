@@ -205,7 +205,8 @@ CREATE ioc-angular-prova-git-hector/tsconfig.json
 En instal·lar el mòdul NPM el repositori Git no pujarà el seu contingut, en el cas que vulguem que sí que pugi s'ha de crear un fitxer i modificar el seu contingut, pera que ho faci bé sense deixar-se res.
 
 ```bash
-npm install
+# Nom del fitxer
+.gitignore
 ```
 
 xx
