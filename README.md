@@ -58,21 +58,21 @@ Abans de començar, assegura't de tenir instal·lades les següents eines al teu
 
 **Extensions VS Code recomanades**
 
-- Angular Language Service: *Autocompletat plantilles*
+- **Angular Language Service**: *Autocompletat plantilles*
 
-- ESLint: *Detecció errors qualitat*
+- **ESLint**: *Detecció errors qualitat*
 
-- Prettier: *Format automàtic*
+- **Prettier**: *Format automàtic*
 
-- GitLens: *Visualització Git*
+- **GitLens**: *Visualització Git*
 
-- Path Intellisense: *Autocompletat rutes*
+- **Path Intellisense**: *Autocompletat rutes*
 
 ------------------------------------------------------
 
 ## 3. Guia d'Instal·lació
 
-(Revisar)
+(Revisar Poner el listado de comandas del proyecto)
 
 
 Sigueix aquests passos per clonar el repositori i executar el projecte localment:
@@ -104,7 +104,7 @@ L'aplicació s'obrirà automàticament a http://localhost:4200 amb suport de rec
 
 ## 4. Scripts Disponibles
 
-(Revisar)
+(Revisar Poner el listado de comandas del proyecto)
 
 Comanda,Descripció
 npm start / ng serve,Executa el servidor local de desenvolupament.
@@ -116,9 +116,9 @@ ng lint,Analitza el codi a la cerca d'errors d'estil i sintaxi.
 
 ## 5. Estructura del Projecte
 
-(Revisar)
+(L'estructura del projecte serà similar a la presentada això pot canviar segons les necessitats o característiques de l'aplicatiu.)
 
-
+```text
 nom-del-projecte/
 ├── .github/              # Workflow i accions de CI/CD
 ├── src/                  # Codi font de l'aplicació
@@ -131,27 +131,24 @@ nom-del-projecte/
 ├── angular.json          # Configuració de l'Angular CLI
 ├── package.json          # Manifest de dependències i scripts
 └── tsconfig.json         # Configuració base de TypeScript
-
+```
 ------------------------------------------------------
 
 ## 6. Tecnologies Utilitzades
 
-(Revisar)
+- **Frontend**: *Angular, TypeScript, HTML5, CSS3 / SCSS*
 
-Frontend: Angular, TypeScript, HTML5, CSS3 / SCSS
+- **Entorn i Gestor de Paquets**: *Node.js, NPM*
 
-Entorn i Gestor de Paquets: Node.js, NPM
-
-IDE & Control de Versions: Visual Studio Code, Git, GitHub
+- **IDE & Control de Versions**: *Visual Studio Code, Git, GitHub*
 
 ------------------------------------------------------
 
 ## 7. Autors i Llicència
 
-(Revisar)
+Desenvolupat per **Hector Jimenez Cruz**.
 
-Desenvolupat per [El teu nom].
-
+(En el cas d'haver de comentar.)
 Projecte creat sota la llicència MIT - consulta el fitxer LICENSE per a més detalls.
 
 ------------------------------------------------------
