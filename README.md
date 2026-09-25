@@ -114,7 +114,56 @@ powershell -Command "Get-PSDrive C | Select-Object Used, Free"
 powershell -Command "Get-PSDrive C | Select-Object @{Name='Used (GB)'; Expression={[math]::Round($_.Used / 1GB, 2)}}, @{Name='Free (GB)'; Expression={[math]::Round($_.Free / 1GB, 2)}}"
 ```
 
-- **Comades de GitHub per un repositori Git**
+- **Checklist de requisits del sistema**
+
+**Maquinari**
+- [ ] CPU: _____ nuclis, _____ GHz (mínim 2)
+- [ ] RAM: _____ GB (mínim 4, recomanat 8-16)
+- [ ] Espai lliure: _____ GB (mínim 10)
+- [ ] Disc: HDD / SSD
+
+**Sistema operatiu**
+- [ ] SO: Windows ___ / macOS ___ / Linux _____
+- [ ] Terminal: PowerShell / zsh / bash
+- [ ] Permisos: Administrador / sudo
+
+**Eines actuals (si n'hi ha)**
+- [ ] Node.js: _____ (`node --version`; mòdul: 24.15.0+ dins 24.x)
+- [ ] npm: _____ (`npm --version`; inclòs amb Node.js 24)
+- [ ] Angular CLI: _____ (`ng version`; mòdul: 22.x)
+- [ ] VS Code: _____ (`code --version`)
+- [ ] Git: _____ (`git --version`)
+
+**Accés a Internet**
+- [ ] Connexió estable
+- [ ] Proxy (si escau): _____
+
+*Observacions / Notes sobre el meu sistema / Dubtes per resoldre*
+
+- **Configuració Git i GitHub**
+
+```bash
+# Configuració global
+git config --global user.name "El Vostre Nom"
+git config --global user.email "el.vostre.email@example.com"
+
+# Verificar configuració
+git config --global --list
+```
+
+- **Crear repositori remot de prova**
+
+Dins de l'aplicatiu web GitHub i enregistrat anirem a crear un nou repositori:
+1. Cliqueu **New repository** (*botó verd dalt a la dreta*)
+2. **Repository name**: *prova-git*
+3. **Description**: "*Repositori de prova per verificar Git i GitHub*"
+4. Deixeu **Public** seleccionat
+5. **NO marqueu** "*Add a README file*" (ja el teniu)
+6. Cliqueu **Create repository**
+
+- **Comades de GitHub per el repositori remot**
+
+Una vegada creat el repositori, la plataforma ens proporcionarà un conjunt de comandes per a la seva gestió. Aquestes ens permetran pujar o baixar canvis, seleccionar la branca de treball i realitzar els commits corresponents.
 
 ```bash
 echo "# prova-git" >> README.md 
@@ -126,22 +175,69 @@ git remote add origin https://github.com/hejimenezcr/prova-git.git
 git push -u origin main
 ```
 
-dsad
-
-------
-
-Sigueix aquests passos per clonar el repositori i executar el projecte localment:
-
-1. **Clona el repositori:**
-   ```bash
-   git clone [https://github.com/usuari/nom-del-projecte.git](https://github.com/usuari/nom-del-projecte.git)
-```
-
-Navega fins al directori del projecte:
+- **Per clonar el repositori i executar el projecte**
 
 ```bash
-cd nom-del-projecte
+git clone https://github.com/hejimenezcr/prova-git.git
 ```
+
+Un cop arribats a aquest punt, ja podem crear el projecte Angular. Per fer-ho, ens desplaçarem a la carpeta on tenim allotjat el repositori per tal d'executar-hi les comandes necessàries.
+
+```bash
+cd C:\ZPublico\Repositorios_GitHub\prova-git
+```
+
+Crea projecte Angular complet
+
+```bash
+ng new ioc-angular-prova-git-hector --routing --style=scss --ssr=false --standalone=true --file-name-style-guide=2016 --skip-git=true --package-manager=npm
+```
+
+Ens crearà diferents fitxes que entre ells:
+
+```bash
+CREATE ioc-angular-prova-git-hector/README.md
+CREATE ioc-angular-prova-git-hector/angular.json
+CREATE ioc-angular-prova-git-hector/package.json
+CREATE ioc-angular-prova-git-hector/tsconfig.json
+```
+
+xx
+
+```bash
+npm install
+```
+
+xx
+
+```bash
+npm install
+```
+
+xx
+
+```bash
+npm install
+```
+
+xx
+
+```bash
+npm install
+```
+
+xx
+
+```bash
+npm install
+```
+
+xx
+
+
+
+
+
 
 Instal·la les dependències:
 ```bash
@@ -233,49 +329,6 @@ Desenvolupat per **Hector Jimenez Cruz**.
 Projecte creat sota la llicència MIT - consulta el fitxer LICENSE per a més detalls.
 
 ------------------------------------------------------
-
-
----
-
-
-
-
-
-
-
-
--> Checklist de requisits
-
-
-MARKDOWN
-
-# Checklist de requisits del sistema
-
-## Maquinari
-- [ ] CPU: _____ nuclis, _____ GHz (mínim 2)
-- [ ] RAM: _____ GB (mínim 4, recomanat 8-16)
-- [ ] Espai lliure: _____ GB (mínim 10)
-- [ ] Disc: HDD / SSD
-
-## Sistema operatiu
-- [ ] SO: Windows ___ / macOS ___ / Linux _____
-- [ ] Terminal: PowerShell / zsh / bash
-- [ ] Permisos: Administrador / sudo
-
-## Eines actuals (si n'hi ha)
-- [ ] Node.js: _____ (`node --version`; mòdul: 24.15.0+ dins 24.x)
-- [ ] npm: _____ (`npm --version`; inclòs amb Node.js 24)
-- [ ] Angular CLI: _____ (`ng version`; mòdul: 22.x)
-- [ ] VS Code: _____ (`code --version`)
-- [ ] Git: _____ (`git --version`)
-
-## Accés a Internet
-- [ ] Connexió estable
-- [ ] Proxy (si escau): _____
-
-## Observacions
-- Notes sobre el meu sistema:
-- Dubtes per resoldre:
 
 ----------------------------
 URL al exteriror
