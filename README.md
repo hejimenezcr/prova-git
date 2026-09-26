@@ -282,10 +282,119 @@ git branch ra4-navegacio
 git branch
 ```
 
-s
+Pujares les branques creades localment al remot.
 
 ```bash
-ss
+git push -u origin main
+git push -u origin ra1-setup
+git push -u origin ra2-components
+git push -u origin ra3-serveis
+git push -u origin ra4-navegacio
+
+```
+
+Ho podrem verificar de la següent manera.
+
+```bash
+git branch -a
+git log --oneline --decorate --all --graph
+```
+
+Ens situarem en la branca ra1-setup
+
+```bash
+git switch ra1-setup
+git status
+git branch --show-current   # ha de respondre: ra1-setup
+```
+
+Una vegada dintre iniciarem el servei de l'Angular desde branch ra1-setup.
+
+```bash
+ng serve --open
+```
+
+NO atureu el servidor. Obriu ```src/app/app.component.ts``` i afegiu una propietat pública amb el nom de la vostra aplicació (el que heu triat com a [nom-app]; a l'exemple, un catàleg). De moment conserveu la propietat title generada, perquè la plantilla actual encara la fa servir:
+
+```bash
+import { Component, signal } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
+
+@Component({
+  imports: [RouterOutlet],
+  selector: 'app-root',
+  styleUrl: './app.component.scss',
+  templateUrl: './app.component.html',
+})
+export class App {
+  protected readonly title = signal('ioc-angular-[nom-app]-[nom-alumne]');
+  public nomAplicacio = 'Catàleg d\'Elements';   // substituïu-ho pel nom de la vostra aplicació
+}
+
+```
+
+Obriu ```src/app/app.component.html```, esborreu tot el contingut generat i substituïu-lo per una pàgina inicial pròpia amb un títol, un paràgraf de presentació, una targeta de dades i un aside. Cal conservar el <router-outlet /> perquè el projecte té routing activat:
+
+```bash
+<main class="app-shell">
+  <section class="intro">
+    <h1>{{ provaGit }}</h1>
+    <p>Aplicació creada per Hector Jimenez Cruz per al mòdul DA2_OA01.</p>
+  </section>
+
+  <section class="project-card">
+    <h2>Dades del projecte</h2>
+    <p>Estat: Projecte base llest</p>
+    <p>Framework: Angular 22</p>
+  </section>
+
+  <aside class="note">
+    <p>Nota: aquest projecte s'ampliarà durant el mòdul.</p>
+  </aside>
+</main>
+
+<router-outlet />
+```
+
+Obriu ```src/app/app.component.scss```, esborreu tot el contingut generat i substituïu-lo
+
+```bash
+.app-shell {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 48rem;
+  margin: 2rem auto;
+  font-family: system-ui, sans-serif;
+}
+
+h1 {
+  color: #1976d2;
+}
+
+.project-card {
+  padding: 1rem;
+  border: 1px solid #b7c7d9;
+  border-radius: 0.5rem;
+}
+
+.note {
+  padding: 1rem;
+  background: #eef5ff;
+  border-left: 4px solid #1976d2;
+}
+```
+Una vegada acabat les modificacions executarem les següents comandes en la branca que pertoca.
+
+```bash
+git add .
+git commit -m "cometario"
+
+# En la branca que estem
+git push -u origin ra1-setup
+
+git log --oneline --decorate --all --graph
+
 ```
 
 
