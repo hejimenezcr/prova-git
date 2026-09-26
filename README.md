@@ -230,6 +230,64 @@ Quan executam la comanda, ens demana si volem utilitzar el navegador que tenim p
 
 Quan vulguem tancar el servei, haurem d'anar al terminal, prémer ```Ctrl + C``` i es tancarà."
 
+Continuarem configurant i preparant l'estructura del projecte, ara crearem carpetes preparatòries.
+
+```bash
+# Ubicacó del projecte
+cd C:\ZPublico\Repositorios_GitHub\prova-git\ioc-angular-prova-git-hector\src\app
+
+# Windows PowerShell
+Set-Location src\app
+New-Item -ItemType Directory -Name components
+New-Item -ItemType Directory -Name services
+New-Item -ItemType Directory -Name models
+New-Item -ItemType Directory -Name pages
+Set-Location ..\..
+
+# Linux/macOS/Git Bash
+cd src/app
+mkdir components services models pages
+cd ../..
+```
+
+Git no versiona carpetes buides. Perquè les quatre carpetes quedin registrades al repositori, afegiu-hi un fitxer .gitkeep:
+
+```bash
+# Windows PowerShell (des de l'arrel del projecte)
+New-Item src\app\components\.gitkeep
+New-Item src\app\services\.gitkeep
+New-Item src\app\models\.gitkeep
+New-Item src\app\pages\.gitkeep
+
+# Linux/macOS/Git Bash (des de l'arrel del projecte)
+touch src/app/components/.gitkeep
+touch src/app/services/.gitkeep
+touch src/app/models/.gitkeep
+touch src/app/pages/.gitkeep
+```
+
+Un únic commit a main amb el missatge indicat. Comproveu amb ```git show --stat``` HEAD que hi apareixen els quatre fitxers .gitkeep.
+
+```bash
+git log --oneline --decorate --all --graph
+```
+
+Crear les branques del mòdul
+
+```bash
+git branch ra1-setup
+git branch ra2-components
+git branch ra3-serveis
+git branch ra4-navegacio
+git branch
+```
+
+s
+
+```bash
+ss
+```
+
 
 ------------------------------------------------------
 
@@ -326,6 +384,7 @@ Obriu ```C:\ZPublico\Repositorios_GitHub\prova-git\ioc-angular-prova-git-hector\
 
 ## 5. Estructura del Projecte
 
+(CUANDO ACABE EL MANUAL SERA LA ESCTRUCTURA DEIFINITIBA)
 ```text
 ioc-angular-prova-git-hector/
 ├── .github/              # Workflow i accions de CI/CD
