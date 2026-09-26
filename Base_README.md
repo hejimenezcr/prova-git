@@ -428,3 +428,69 @@ Projecte creat sota la llicència MIT - consulta el fitxer LICENSE per a més de
 
 ------------------------------------------------------
 
+----------------------------
+URL al exteriror
+[Ir a Google](https://www.google.com)
+
+-> Taula completa
+
+| Columna 1 | Columna 2 | Columna 3 | Columna 4 |
+| :--- | :---: | ---: | ---: |
+| esquerra | Text centrat | Text dreta | dreta |
+| Valor A1 | Valor A2 | Valor A3 | Valor A4 |
+| Valor B1 | Valor B2 | Valor B3 | Valor B4 |
+
+
+-> Taula con link
+
+| ID | Concepte | Estat | Enllaç / Codi |
+| :---: | :--- | :---: | :--- |
+| **01** | Instal·lació de dependències | `Completat` | [Veure guia](#3-guia-dinstal·lació) |
+| **02** | Configuració d'Angular | `Pendent` | `ng config -g` |
+| **03** | Desplegament a producció | `En procés` | [Documentació](https://angular.dev) |
+
+
+-> Formato de letra
+
+_Este texto también está en cursiva_
+
+Para hacer texto en **cursiva (itálica)** en Markdown (MD), tienes dos opciones muy sencillas:
+
+-> 1. Usar un asterisco (`*`)
+
+Envuelve el texto con **un asterisco** al principio y al final (sin espacios entre el asterisco y la palabra):
+
+```markdown
+*Este texto está en cursiva*
+
+```
+
+---
+
+-> 2. Usar un guion bajo (`_`)
+
+También puedes envolver el texto con **un guion bajo** al principio y al final:
+
+```markdown
+_Este texto también está en cursiva_
+
+```
+
+---
+
+-> Resumen de combinaciones útiles:
+
+| Formato | Sintaxis en Markdown | Resultado |
+| --- | --- | --- |
+| **Cursiva** | `*Texto en cursiva*` | *Texto en cursiva* |
+| **Negrita** | `**Texto en negrita**` | **Texto en negrita** |
+| **Negrita + Cursiva** | `***Texto combinado***` | ***Texto combinado*** |
+| **Tachado + Cursiva** | `~*Texto tachado y cursiva*~` | ~*Texto tachado y cursiva*~ |
+
+> **Consejo:** Para mantener un código limpio y legible en tus archivos `.md`, se recomienda elegir un solo estilo (usualmente la opción del asterisco `*`) y mantenerlo en todo el documento.
+
+------------------------
+
+
+
+
