@@ -235,36 +235,41 @@ Quan vulguem tancar el servei, haurem d'anar al terminal, prémer ```Ctrl + C```
 
 ## 4. Scripts Disponibles
 
-(Revisar Poner el listado de comandas del proyecto)
+| Comanda | Descripció |
+| :--- | ---: |
+| ```npm start``` / ```ng serve``` | Executa el servidor local de desenvolupament. |
+| ```ng build``` | Compila l'aplicació i genera els arxius de producció a /dist. |
+| ```ng test``` | Executa les proves unitàries (unit tests). |
+| ```ng lint``` | Analitza el codi a la cerca d'errors d'estil i sintaxi. |
 
-Comanda,Descripció
-npm start / ng serve,Executa el servidor local de desenvolupament.
-ng build,Compila l'aplicació i genera els arxius de producció a /dist.
-ng test,Executa les proves unitàries (unit tests).
-ng lint,Analitza el codi a la cerca d'errors d'estil i sintaxi.
 
-(Seguir revisando)
 
-IMPORTATE DE LEER
+| Carpetes principals | Descripció |
+| :--- | ---: |
+| ```src/app/``` | Components i codi de l'aplicació |
+| ```public/``` | Recursos estàtics (imatges, fonts, favicon.ico); en versions antigues d'Angular aquesta carpeta era ```src/assets/``` |
+| ```node_modules/``` | Dependències npm (NO pujar a Git) |
 
-Carpetes principals:
 
-src/app/ → Components i codi de l'aplicació
-public/ → Recursos estàtics (imatges, fonts, favicon.ico); en versions antigues d'Angular aquesta carpeta era src/assets/
-node_modules/ → Dependències npm (NO pujar a Git)
+
 Fitxers clau:
+| Comanda | Descripció |
+| :--- | ---: |
+| ```angular.json``` | Configuració Angular CLI (aquí queda registrat que els components es generen amb estil SCSS i noms ```*.component.*```) |
+| ```package.json``` | Dependències i scripts ```npm``` |
+| ```tsconfig.json``` | Configuració TypeScript |
+| ```.gitignore``` | Fitxers exclosos de Git (ja inclou ```/node_modules```, ```/dist``` i ```/.angular/cache```) |
+| ```src/app/app.component.ts``` | Component arrel. Amb Angular 22 la classe generada es diu App, tot i que el fitxer conserva el nom ```app.component.ts``` |
+| ```src/app/app.config.ts``` | Configuració global de l'aplicació (proveïdors, entre ells provideRouter(routes)) |
+| ```src/app/app.routes.ts``` | Mapa de rutes, de moment buit |
+| ```src/main.ts``` | Punt d'entrada: bootstrapApplication(App, appConfig) |
 
-angular.json → Configuració Angular CLI (aquí queda registrat que els components es generen amb estil SCSS i noms *.component.*)
-package.json → Dependències i scripts npm
-tsconfig.json → Configuració TypeScript
-.gitignore → Fitxers exclosos de Git (ja inclou /node_modules, /dist i /.angular/cache)
-src/app/app.component.ts → Component arrel. Amb Angular 22 la classe generada es diu App, tot i que el fitxer conserva el nom app.component.ts
-src/app/app.config.ts → Configuració global de l'aplicació (proveïdors, entre ells provideRouter(routes))
-src/app/app.routes.ts → Mapa de rutes, de moment buit
-src/main.ts → Punt d'entrada: bootstrapApplication(App, appConfig)
 
-Obriu src/app/app.component.ts i observeu el contingut generat:
+- Verificarem el contingut dels de diferents fitxers.
 
+Obriu ```src/app/app.component.ts``` i observeu el contingut generat:
+
+```bash
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
@@ -275,14 +280,15 @@ import { RouterOutlet } from '@angular/router';
   templateUrl: './app.component.html',
 })
 export class App {
-  protected readonly title = signal('ioc-angular-[nom-app]-[nom-alumne]');
+  protected readonly title = signal('ioc-angular-prova-git-hector');
 }
+```
 
+Obriu ```C:\ZPublico\Repositorios_GitHub\prova-git\ioc-angular-prova-git-hector\package.json```.
 
-->  Pas 4: Verificar package.json
-
+```bash
 {
-  "name": "ioc-angular-[nom-app]-[nom-alumne]",
+  "name": "ioc-angular-prova-git-hector",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -313,37 +319,19 @@ export class App {
     "vitest": "^4.0.8"
   }
 }
-
+```
 
 
 ------------------------------------------------------
 
 ## 5. Estructura del Projecte
 
-(L'estructura del projecte serà similar a la presentada això pot canviar segons les necessitats o característiques de l'aplicatiu.)
-
 ```text
-nom-del-projecte/
+ioc-angular-prova-git-hector/
 ├── .github/              # Workflow i accions de CI/CD
+├── public/                (recursos estàtics)
 ├── src/                  # Codi font de l'aplicació
 │   ├── app/              # Components, serveis i mòduls
-│   ├── assets/           # Imatges, icones i fitxers estàtics
-│   ├── environments/     # Configuracions d'entorn (dev / prod)
-│   ├── index.html        # Fitxer HTML principal
-│   └── styles.css        # Estils globals
-├── .gitignore            # Fitxers exclosos de Git (node_modules, dist)
-├── angular.json          # Configuració de l'Angular CLI
-├── package.json          # Manifest de dependències i scripts
-└── tsconfig.json         # Configuració base de TypeScript
-```
-
-(Enteoria se parace a esta despues hay que hace un dir/tree para verificar)
-
-```text
-ioc-angular-[nom-app]-[nom-alumne]/
-├── public/                (recursos estàtics)
-├── src/
-│   ├── app/
 │   │   ├── components/    (preparatori, amb .gitkeep)
 │   │   ├── services/      (preparatori, amb .gitkeep)
 │   │   ├── models/        (preparatori, amb .gitkeep)
@@ -351,14 +339,14 @@ ioc-angular-[nom-app]-[nom-alumne]/
 │   │   ├── app.component.ts / .html / .scss
 │   │   ├── app.routes.ts
 │   │   └── app.config.ts
-│   ├── index.html
+│   ├── index.html        # Fitxer HTML principal
 │   ├── main.ts
-│   └── styles.scss
-├── angular.json
-├── package.json
-├── tsconfig.json
+│   └── styles.scss       # Estils globals
+├── angular.json          # Configuració de l'Angular CLI
+├── package.json          # Manifest de dependències i scripts
+├── tsconfig.json         # Configuració base de TypeScript
 ├── README.md
-└── .gitignore
+└── .gitignore            # Fitxers exclosos de Git (node_modules, dist)
 ```
 
 ------------------------------------------------------
