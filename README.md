@@ -384,7 +384,6 @@ Obriu ```C:\ZPublico\Repositorios_GitHub\prova-git\ioc-angular-prova-git-hector\
 
 ## 5. Estructura del Projecte
 
-(CUANDO ACABE EL MANUAL SERA LA ESCTRUCTURA DEIFINITIBA)
 ```text
 ioc-angular-prova-git-hector/
 ├── .github/              # Workflow i accions de CI/CD
