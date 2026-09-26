@@ -8,5 +8,6 @@ import { RouterOutlet } from '@angular/router';
   templateUrl: './app.component.html',
 })
 export class App {
-  protected readonly title = signal('ioc-angular-prova-git-hector');
+  //protected readonly title = signal('ioc-angular-prova-git-hector');
+  public provaGit = 'Catàleg d\'Elements';   // substituïu-ho pel nom de la vostra aplicació
 }

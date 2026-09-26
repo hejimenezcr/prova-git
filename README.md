@@ -428,3 +428,16 @@ Projecte creat sota la llicència MIT - consulta el fitxer LICENSE per a més de
 
 ------------------------------------------------------
 
+# Nom de l'aplicació
+
+## Autor/a
+
+## Descripció
+
+## Versions utilitzades
+
+## Com crear i executar el projecte
+
+## Estat del projecte
+
+## Enllaç del repositori
