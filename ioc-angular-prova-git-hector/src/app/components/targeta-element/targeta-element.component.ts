@@ -1,18 +1,12 @@
-// targeta-element.component.ts
-// este codigo es del profe
-//export class TargetaElementComponent {
-  //@Input() element!: Element;
-//}
-// este codigo es de la IA
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-targeta-element',
-  standalone: true,
   imports: [],
+  selector: 'app-targeta-element',
+  styleUrl: './targeta-element.component.scss',
   templateUrl: './targeta-element.component.html',
-  styleUrl: './targeta-element.component.css'
 })
 export class TargetaElementComponent {
-  @Input() element!: any; // o el tipo de interfaz/modelo que uses
+  titol = 'Element destacat del catàleg // Element modificat en temps real';
+  descripcio = 'Aquesta és una targeta bàsica que mostra informació d\'un element. Serà reutilitzable per tots els elements del catàleg.';
 }
