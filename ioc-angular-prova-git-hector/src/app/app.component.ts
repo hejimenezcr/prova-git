@@ -1,14 +1,11 @@
-import { Component, signal } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { TargetaElementComponent } from './components/targeta-element/targeta-element.component'; // linia añadir
+import { TargetaElementComponent } from './components/targeta-element/targeta-element.component';
 
 @Component({
-  imports: [RouterOutlet, TargetaElementComponent],  // Afegiu aquí segundo parametro
+  imports: [RouterOutlet, TargetaElementComponent],  // Afegiu aquí
   selector: 'app-root',
   styleUrl: './app.component.scss',
   templateUrl: './app.component.html',
 })
-export class App {
-  // dejema sin parametro que hay de base
-  //protected readonly title = signal('ioc-angular-prova-git-hector');
-}
+export class App {}
