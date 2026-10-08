@@ -1,8 +1,22 @@
+<!--es la pagina principal del aplicativo-->
+
 <div class="contenidor">
   <h1>Catàleg d'Elements</h1>
+
   <p class="subtitol">Benvingut al catàleg interactiu d'elements</p>
 
-  <section class="llista-elements">
-    <app-targeta-element></app-targeta-element>
+  <!-- Aquí és on es renderitza la nova pàgina / component de detall -->
+
+  <!--section class="llista-elements"-->
+  <section style="margin-top: 30px;">
+    <h2>Detall del Producte</h2>
+    
+    <app-detall-element 
+      [element]="elementDetallExemple"
+      (afegirCarret)="onAfegirCarret($event)"
+      (comparar)="onComparar($event)">
+    </app-detall-element>
   </section>
 </div>
+
+<router-outlet />

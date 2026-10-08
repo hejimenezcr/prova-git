@@ -1,4 +1,28 @@
-<article class="targeta">
+<!--pagina de HTML para un funcon concreta-->
+<article class="targeta" [class.no-disponible]="!element.disponible">
   <h2 class="targeta__titol">{{ titol }}</h2>
   <p class="targeta__descripcio">{{ descripcio }}</p>
+
+  <img [src]="element.imatge" [alt]="element.nom" class="targeta__imatge">
+
+  <div class="targeta__contingut">
+    <h3 class="targeta__nom">{{ element.nom }}</h3>
+    <p class="targeta__descripcio">{{ element.descripcio }}</p>
+
+    <div class="targeta__peu">
+      <span class="targeta__preu">
+        <!--{{ preuAmbIVA | number:"1.2-2" }}€ (IVA inclòs)-->
+      </span>
+
+      <a [href]="element.enllac" [title]="'Veure ' + element.nom">
+        Més informació
+      </a>
+
+      <button
+        [disabled]="!element.disponible || processant"
+        [hidden]="!element.disponible">
+        {{ processant ? 'Processant...' : 'Afegir al carret' }}
+      </button>
+    </div>
+  </div>
 </article>

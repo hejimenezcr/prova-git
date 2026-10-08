@@ -1,0 +1,117 @@
+.detall-element {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  padding: 2rem;
+  background-color: #ffffff;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+
+  @media (min-width: 768px) {
+    grid-template-columns: 600px 1fr;
+  }
+
+  &__imatge-container {
+    width: 100%;
+    max-width: 600px;
+    height: 400px;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: #f3f4f6;
+  }
+
+  &__imatge {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  &__contingut {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  &__titol {
+    margin: 0 0 1rem 0;
+    font-size: 1.875rem;
+    font-weight: 700;
+    color: #111827;
+  }
+
+  &__descripcio {
+    margin: 0 0 1.5rem 0;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #4b5563;
+  }
+
+  &__subtitol {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #1f2937;
+  }
+
+  &__llista {
+    margin: 0 0 1.5rem 0;
+    padding-left: 1.25rem;
+    color: #4b5563;
+  }
+
+  &__item {
+    margin-bottom: 0.25rem;
+    line-height: 1.5;
+  }
+
+  &__preu-container {
+    margin-bottom: 1.5rem;
+  }
+
+  &__preu {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #059669;
+  }
+
+  &__accions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  &__boto {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+
+    &:active {
+      transform: scale(0.98);
+    }
+
+    &--principal {
+      background-color: #2563eb;
+      color: #ffffff;
+
+      &:hover {
+        background-color: #1d4ed8;
+      }
+    }
+
+    &--secundari {
+      background-color: #f3f4f6;
+      color: #374151;
+      border: 1px solid #d1d5db;
+
+      &:hover {
+        background-color: #e5e7eb;
+      }
+    }
+  }
+}
