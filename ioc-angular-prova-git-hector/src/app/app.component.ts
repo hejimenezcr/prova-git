@@ -1,19 +1,35 @@
-//donde se genera las funciones y rutas principales del aplicativo
-import { Component } from '@angular/core';
+import { Component, signal, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { 
+  CurrencyPipe, 
+  DatePipe, 
+  PercentPipe, 
+  TitleCasePipe, 
+  UpperCasePipe 
+} from '@angular/common';
+
 import { TargetaElementComponent } from './components/targeta-element/targeta-element.component';
 import { DetallElementComponent, ElementDetall } from './components/detall-element/detall-element.component';
-//import { TargetaElementCompletComponent } from './components/targeta-element-complet/targeta-element-complet.component';
-
+import { ElementCataleg, EstatLlista } from './models/element.model';
 
 @Component({
-  imports: [RouterOutlet, TargetaElementComponent, DetallElementComponent],  // TargetaElementCompletComponent Afegiu aquí donde se agregan las clases creadas para sub funciones o subpagianas
   selector: 'app-root',
-  styleUrl: './app.component.scss',
+  standalone: true,
+  imports: [
+    RouterOutlet,
+    TargetaElementComponent,
+    DetallElementComponent,
+    TitleCasePipe,
+    UpperCasePipe,
+    CurrencyPipe,
+    DatePipe,
+    PercentPipe
+  ],
   templateUrl: './app.component.html',
+  styleUrl: './app.component.scss'
 })
-export class App {
-  // Definim un objecte de prova amb les dades que demana DetallElementComponent
+export class App implements OnInit {
+  // --- 1. DADES I MÈTODES PER AL COMPONENT DE DETALL ---
   elementDetallExemple: ElementDetall = {
     id: 1,
     titol: 'Microscopi Electrònic d\'Alta Resolució',
@@ -28,12 +44,66 @@ export class App {
     preu: 45000
   };
 
-  // Mètodes per gestionar els esdeveniments dels botons (@Output)
   onAfegirCarret(element: ElementDetall): void {
     console.log('Afegit al carret des de la pàgina principal:', element.titol);
   }
 
   onComparar(element: ElementDetall): void {
     console.log('Comparant element:', element.titol);
+  }
+
+  // --- 2. DADES I MÈTODES PER A LA LLISTA DE CONTROL DE FLUX (SIGNALS & PIPES) ---
+  estatLlista = signal<EstatLlista>('carregant');
+  elements = signal<ElementCataleg[]>([]);
+  missatgeError = signal<string>('');
+
+  ngOnInit(): void {
+    this.carregarElements();
+  }
+
+  carregarElements(): void {
+    this.estatLlista.set('carregant');
+
+    setTimeout(() => {
+      const dadesSimulades: ElementCataleg[] = [
+        {
+          id: 1,
+          titol: 'pack d\'icones vectorials',
+          categoria: 'icones',
+          preu: 29.99,
+          dataActualitzacio: '2025-01-10T09:30:00Z',
+          percentatgeDisponibilitat: 0.95,
+          disponible: true
+        },
+        {
+          id: 2,
+          titol: 'catàleg de colors corporatius',
+          categoria: 'paletes',
+          preu: 49.99,
+          dataActualitzacio: '2025-01-15T10:00:00Z',
+          percentatgeDisponibilitat: 0.85,
+          disponible: true
+        },
+        {
+          id: 3,
+          titol: 'sistema tipogràfic avançat',
+          categoria: 'tipografia',
+          preu: 0,
+          dataActualitzacio: '2025-01-18T16:45:00Z',
+          percentatgeDisponibilitat: 0,
+          disponible: false
+        }
+      ];
+
+      this.elements.set(dadesSimulades);
+      this.estatLlista.set(dadesSimulades.length > 0 ? 'disponible' : 'buit');
+    }, 1200);
+  }
+
+  simularEstat(estat: EstatLlista): void {
+    this.estatLlista.set(estat);
+    if (estat === 'error') {
+      this.missatgeError.set('Error de connexió amb el servidor.');
+    }
   }
 }

@@ -1,21 +1,65 @@
-<!--es la pagina principal del aplicativo-->
-
 <div class="contenidor">
-  <h1>Catàleg d'Elements</h1>
-
+  <h1>Catàleg d'Elements - Angular 22</h1>
   <p class="subtitol">Benvingut al catàleg interactiu d'elements</p>
 
-  <!-- Aquí és on es renderitza la nova pàgina / component de detall -->
-
-  <!--section class="llista-elements"-->
-  <section style="margin-top: 30px;">
-    <h2>Detall del Producte</h2>
-    
+  <!-- 1. Component de Detall d'un Producte -->
+  <section style="margin-bottom: 2rem;">
+    <h2>Detall del Producte Destacat</h2>
     <app-detall-element 
       [element]="elementDetallExemple"
       (afegirCarret)="onAfegirCarret($event)"
       (comparar)="onComparar($event)">
     </app-detall-element>
+  </section>
+
+  <hr>
+
+  <!-- 2. Controls i Llista de Control de Flux -->
+  <section style="margin-top: 2rem;">
+    <h2>Llistat General i Controls d'Estat</h2>
+    
+    <nav class="panell-control">
+      <button type="button" (click)="carregarElements()">🔄 Recomençar Càrrega</button>
+      <button type="button" (click)="simularEstat('carregant')">⏳ Carregant</button>
+      <button type="button" (click)="simularEstat('disponible')">✅ Disponible</button>
+      <button type="button" (click)="simularEstat('buit')">📭 Buit</button>
+      <button type="button" (click)="simularEstat('error')">❌ Error</button>
+    </nav>
+
+    @switch (estatLlista()) {
+      @case ('carregant') {
+        <div class="estat estat--carregant">
+          <p>Carregant dades del catàleg...</p>
+        </div>
+      }
+      @case ('error') {
+        <div class="estat estat--error">
+          <p>❌ {{ missatgeError() }}</p>
+          <button type="button" (click)="carregarElements()">Tornar a intentar</button>
+        </div>
+      }
+      @case ('buit') {
+        <div class="estat estat--buit">
+          <p>No hi ha cap element disponible.</p>
+        </div>
+      }
+      @case ('disponible') {
+        <h3>Total d'elements: {{ elements().length }}</h3>
+        <ul class="grid-targetes">
+          @for (element of elements(); track element.id) {
+            <li class="item-grid">
+              <article class="targeta">
+                <span class="targeta__categoria">{{ element.categoria | uppercase }}</span> - 
+                <strong class="targeta__titol">{{ element.titol | titlecase }}</strong> - 
+                <span class="targeta__preu">{{ element.preu | currency:'EUR':'symbol':'1.2-2' }}</span> - 
+                <span>{{ element.dataActualitzacio | date:'dd/MM/yyyy' }}</span> - 
+                <span>Stock: {{ element.percentatgeDisponibilitat | percent:'1.0-0' }}</span>
+              </article>
+            </li>
+          }
+        </ul>
+      }
+    }
   </section>
 </div>
 
