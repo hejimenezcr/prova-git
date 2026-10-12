@@ -11,6 +11,7 @@ import {
 import { TargetaElementComponent } from './components/targeta-element/targeta-element.component';
 import { DetallElementComponent, ElementDetall } from './components/detall-element/detall-element.component';
 import { ElementCataleg, EstatLlista } from './models/element.model';
+import { FormulariElementComponent, NouElement } from './components/formulari-element/formulari-element.component';
 
 @Component({
   selector: 'app-root',
@@ -23,7 +24,8 @@ import { ElementCataleg, EstatLlista } from './models/element.model';
     UpperCasePipe,
     CurrencyPipe,
     DatePipe,
-    PercentPipe
+    PercentPipe,
+    FormulariElementComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
@@ -106,4 +108,18 @@ export class App implements OnInit {
       this.missatgeError.set('Error de connexió amb el servidor.');
     }
   }
+
+  // --- 3. PARA GESTIONAR EL FORMULARIO ---
+  onElementCreat(nouElement: NouElement): void {
+    console.log('Element rebut del formulari:', nouElement);
+    // Aquí pots afegir el nou element a la teva llista d'elements
+  }
 }
+
+
+///////////////////////
+
+
+
+
+
