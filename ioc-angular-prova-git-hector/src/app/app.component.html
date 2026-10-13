@@ -1,10 +1,10 @@
 <div class="contenidor">
-  <h1>Catàleg d'Elements - Angular 22</h1>
-  <p class="subtitol">Benvingut al catàleg interactiu d'elements</p>
+  <h1>Catàleg d'Elements - Registre Completa de Pràctiques</h1>
+  <p class="subtitol">Projecte unificat amb tots els exercicis realitzats</p>
 
-  <!-- 1. Component de Detall d'un Producte -->
+  <!-- SECCIÓN 1: DETALLE DE PRODUCTO -->
   <section style="margin-bottom: 2rem;">
-    <h2>Detall del Producte Destacat</h2>
+    <h2>1. Detall del Producte Destacat (@Input / @Output)</h2>
     <app-detall-element 
       [element]="elementDetallExemple"
       (afegirCarret)="onAfegirCarret($event)"
@@ -14,9 +14,9 @@
 
   <hr>
 
-  <!-- 2. Controls i Llista de Control de Flux -->
-  <section style="margin-top: 2rem;">
-    <h2>Llistat General i Controls d'Estat</h2>
+  <!-- SECCIÓN 2: CONTROL DE FLUJO Y SIGNALS -->
+  <section style="margin-top: 2rem; margin-bottom: 2rem;">
+    <h2>2. Control de Flux amb Signals i Pipes</h2>
     
     <nav class="panell-control">
       <button type="button" (click)="carregarElements()">🔄 Recomençar Càrrega</button>
@@ -44,16 +44,15 @@
         </div>
       }
       @case ('disponible') {
-        <h3>Total d'elements: {{ elements().length }}</h3>
+        <h3>Total d'elements: {{ elementsSignals().length }}</h3>
         <ul class="grid-targetes">
-          @for (element of elements(); track element.id) {
+          @for (element of elementsSignals(); track element.id) {
             <li class="item-grid">
               <article class="targeta">
                 <span class="targeta__categoria">{{ element.categoria | uppercase }}</span> - 
                 <strong class="targeta__titol">{{ element.titol | titlecase }}</strong> - 
                 <span class="targeta__preu">{{ element.preu | currency:'EUR':'symbol':'1.2-2' }}</span> - 
-                <span>{{ element.dataActualitzacio | date:'dd/MM/yyyy' }}</span> - 
-                <span>Stock: {{ element.percentatgeDisponibilitat | percent:'1.0-0' }}</span>
+                <span>{{ element.dataActualitzacio | date:'dd/MM/yyyy' }}</span>
               </article>
             </li>
           }
@@ -64,11 +63,75 @@
 
   <hr>
 
-  <!--Formularios-->
-  <section style="margin-top: 2rem;">
+  <!-- SECCIÓN 3: FORMULARIO REACTIVO -->
+  <section style="margin-top: 2rem; margin-bottom: 2rem;">
+    <h2>3. Formulari d'Alta d'Elements (Reactive Forms)</h2>
     <app-formulari-element (elementCreat)="onElementCreat($event)"></app-formulari-element>
   </section>
-  
+
+  <hr>
+
+  <!-- SECCIÓN 4: PRÁCTICA INTEGRADA CON FILTROS -->
+  <section id="contingut-principal" style="margin-top: 2rem;">
+    <h2>4. Pràctica Integrada del Catàleg amb Filtres i Accessibilitat</h2>
+
+    <nav class="filtres-zona" aria-label="Filtres del catàleg">
+      <app-barra-filtres (filtresCanviats)="actualitzaFiltres($event)" />
+    </nav>
+
+    @if (carregant()) {
+      <section class="estat-carregant" aria-live="polite" aria-busy="true">
+        <div class="spinner" aria-hidden="true"></div>
+        <p>Carregant elements...</p>
+      </section>
+    } @else {
+      <section class="resultats" aria-label="Resultats">
+        <h3>
+          Resultats de la cerca:
+          <span class="comptador" aria-live="polite">
+            {{ elementsFiltrats.length }} de {{ elements.length }}
+          </span>
+        </h3>
+
+        @if (filtresActuals.text || filtresActuals.categoria !== 'Totes') {
+          <p class="info-filtres">
+            Filtres actius:
+            @if (filtresActuals.text) { text «{{ filtresActuals.text }}» }
+            @if (filtresActuals.categoria !== 'Totes') { categoria {{ filtresActuals.categoria }} }
+          </p>
+        }
+
+        @if (elementsFiltrats.length > 0) {
+          <app-llista-elements
+            [elements]="elementsFiltrats"
+            [elementSeleccionatId]="elementSeleccionat?.id"
+            (selecciona)="seleccionaElement($event)"
+          />
+        } @else {
+          <div class="sense-resultats" role="status">
+            <p>No s'ha trobat cap element amb aquests filtres.</p>
+          </div>
+        }
+      </section>
+    }
+
+    <aside class="detall" aria-live="polite" aria-label="Detall de l'element" style="margin-top: 1.5rem;">
+      <h3>Panell de Detall Seleccionat</h3>
+
+      @if (elementSeleccionat) {
+        <h4>{{ elementSeleccionat.titol }}</h4>
+        <p>{{ elementSeleccionat.descripcio }}</p>
+        <ul>
+          <li><strong>Categoria:</strong> {{ elementSeleccionat.categoria }}</li>
+          <li><strong>Valoració:</strong> {{ elementSeleccionat.valoracio }}/5</li>
+        </ul>
+        <button type="button" (click)="tancaDetall()">Tanca el detall</button>
+      } @else {
+        <p>Seleccioneu un element de la llista per veure el seu detall.</p>
+      }
+    </aside>
+  </section>
+
 </div>
 
 <router-outlet />

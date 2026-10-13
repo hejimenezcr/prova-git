@@ -1,19 +1,20 @@
+export type CategoriaElement = 'Electrònica' | 'Àudio' | 'Accessoris' | 'Pantalles' | 'Energia' | 'icones' | 'paletes' | 'tipografia';
+
 export interface Element {
   id: number;
-  nom: string;
-  categoria: string;
-  preu: number;
-  disponible: boolean;
-}
-
-export interface ElementCataleg {
-  id: number;
   titol: string;
-  categoria: string;
-  preu: number;
+  descripcio: string;
+  categoria: CategoriaElement;
   dataActualitzacio: string;
-  percentatgeDisponibilitat: number;
-  disponible: boolean;
+  valoracio?: number;
+  destacat?: boolean;
+  preu?: number;
+  percentatgeDisponibilitat?: number;
+  disponible?: boolean;
 }
 
+// Tipo alternativo para el Signals de Control de Flux
+export type ElementCataleg = Element;
 export type EstatLlista = 'carregant' | 'buit' | 'error' | 'disponible';
+
+
