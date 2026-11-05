@@ -1,0 +1,46 @@
+<article class="detall-element">
+  <div class="detall-element__imatge-container">
+    <img 
+      [src]="element.imatge || 'https://placehold.co/600x400'" 
+      [alt]="element.titol" 
+      class="detall-element__imatge"
+    >
+  </div>
+
+  <div class="detall-element__contingut">
+    <h2 class="detall-element__titol">{{ element.titol }}</h2>
+
+    <p class="detall-element__descripcio">{{ element.descripcioLlarga }}</p>
+
+    <div class="detall-element__caracteristiques">
+      <h3 class="detall-element__subtitol">Característiques principals:</h3>
+      <ul class="detall-element__llista">
+        @for (caracteristica of element.caracteristiques; track caracteristica) {
+          <li class="detall-element__item">{{ caracteristica }}</li>
+        }
+      </ul>
+    </div>
+
+    <div class="detall-element__preu-container">
+      <span class="detall-element__preu">{{ element.preu }} €</span>
+    </div>
+
+    <div class="detall-element__accions">
+      <button 
+        type="button" 
+        class="detall-element__boto detall-element__boto--principal" 
+        (click)="onAfegirCarret()"
+      >
+        Afegir al carret
+      </button>
+
+      <button 
+        type="button" 
+        class="detall-element__boto detall-element__boto--secundari" 
+        (click)="onComparar()"
+      >
+        Comparar
+      </button>
+    </div>
+  </div>
+</article>
