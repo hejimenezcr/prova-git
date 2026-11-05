@@ -1,0 +1,16 @@
+<article class="targeta-completa">
+  <img [src]="imatge" [alt]="titol" class="targeta-completa__imatge">
+
+  <div class="targeta-completa__contingut">
+    <span class="targeta-completa__categoria">{{ categoria }}</span>
+    <h3 class="targeta-completa__titol">{{ titol }}</h3>
+    <p class="targeta-completa__descripcio">{{ descripcio }}</p>
+
+    <div class="targeta-completa__peu">
+      <span class="targeta-completa__preu">{{ preu }}€</span>
+      <button class="targeta-completa__boto" (click)="veureDetalls()">
+        Veure detalls
+      </button>
+    </div>
+  </div>
+</article>

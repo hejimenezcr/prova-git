@@ -1,0 +1,122 @@
+<div class="contenidor-formulari">
+  <h2>Alta de Nou Element al Catàleg</h2>
+
+  <form [formGroup]="formulari" (ngSubmit)="onSubmit()" class="formulari" novalidate>
+    
+    <!-- Camp: Títol -->
+    <div class="camp" [class.camp--invalid]="esCampInvalid('titol')">
+      <label for="titol">Títol de l'element *</label>
+      <input 
+        id="titol" 
+        type="text" 
+        formControlName="titol" 
+        placeholder="Ex: Pack d'icones vectorials"
+      >
+      @if (esCampInvalid('titol')) {
+        <div class="missatge-error">
+          @if (formulari.get('titol')?.errors?.['required']) {
+            <span>El títol és obligatori.</span>
+          }
+          @if (formulari.get('titol')?.errors?.['minlength']) {
+            <span>El títol ha de tenir com a mínim 3 caràcters.</span>
+          }
+        </div>
+      }
+    </div>
+
+    <!-- Camp: Categoria -->
+    <div class="camp" [class.camp--invalid]="esCampInvalid('categoria')">
+      <label for="categoria">Categoria *</label>
+      <select id="categoria" formControlName="categoria">
+        <option value="">-- Selecciona una categoria --</option>
+        <option value="icones">Icones</option>
+        <option value="paletes">Paletes de colors</option>
+        <option value="tipografia">Tipografia</option>
+        <option value="components">Components UI</option>
+      </select>
+      @if (esCampInvalid('categoria')) {
+        <div class="missatge-error">
+          <span>Heu de seleccionar una categoria.</span>
+        </div>
+      }
+    </div>
+
+    <!-- Camp: Preu -->
+    <div class="camp" [class.camp--invalid]="esCampInvalid('preu')">
+      <label for="preu">Preu (€) *</label>
+      <input 
+        id="preu" 
+        type="number" 
+        step="0.01" 
+        formControlName="preu" 
+        placeholder="0.00"
+      >
+      @if (esCampInvalid('preu')) {
+        <div class="missatge-error">
+          @if (formulari.get('preu')?.errors?.['required']) {
+            <span>El preu és obligatori (poseu 0 si és gratuït).</span>
+          }
+          @if (formulari.get('preu')?.errors?.['min']) {
+            <span>El preu no pot ser un valor negatiu.</span>
+          }
+        </div>
+      }
+    </div>
+
+    <!-- Camp: Email de Contacte -->
+    <div class="camp" [class.camp--invalid]="esCampInvalid('emailContacte')">
+      <label for="emailContacte">Correu electrònic de contacte *</label>
+      <input 
+        id="emailContacte" 
+        type="email" 
+        formControlName="emailContacte" 
+        placeholder="exemple@domini.cat"
+      >
+      @if (esCampInvalid('emailContacte')) {
+        <div class="missatge-error">
+          @if (formulari.get('emailContacte')?.errors?.['required']) {
+            <span>El correu electrònic és obligatori.</span>
+          }
+          @if (formulari.get('emailContacte')?.errors?.['email']) {
+            <span>Introduïu una adreça de correu electrònic vàlida.</span>
+          }
+        </div>
+      }
+    </div>
+
+    <!-- Camp: Descripció -->
+    <div class="camp" [class.camp--invalid]="esCampInvalid('descripcio')">
+      <label for="descripcio">Descripció (opcional)</label>
+      <textarea 
+        id="descripcio" 
+        rows="4" 
+        formControlName="descripcio" 
+        placeholder="Afegeix una breu descripció..."
+      ></textarea>
+      @if (esCampInvalid('descripcio')) {
+        <div class="missatge-error">
+          <span>La descripció no pot superar els 200 caràcters.</span>
+        </div>
+      }
+    </div>
+
+    <!-- Checkbox: Termes -->
+    <div class="camp camp--checkbox" [class.camp--invalid]="esCampInvalid('acceptaTermes')">
+      <label class="label-checkbox">
+        <input type="checkbox" formControlName="acceptaTermes">
+        <span>Accepto els termes i condicions de publicació *</span>
+      </label>
+      @if (esCampInvalid('acceptaTermes')) {
+        <div class="missatge-error">
+          <span>Heu d'acceptar els termes per poder enviar el formulari.</span>
+        </div>
+      }
+    </div>
+
+    <!-- Botó d'enviament -->
+    <div class="accions">
+      <button type="submit" class="boto-enviar">Crear Element</button>
+    </div>
+
+  </form>
+</div>
