@@ -1,8 +1,8 @@
 <div class="contenidor">
   <h1>Catàleg d'Elements - Registre Completa de Pràctiques</h1>
-  <p class="subtitol">Projecte unificat amb tots els exercicis realitzats</p>
+  <p class="subtitol">Projecte unificat amb tots els exercicis realitzats (RA2 & RA3)</p>
 
-  <!-- SECCIÓN 1: DETALLE DE PRODUCTO -->
+  <!-- SECCIÓ 1: DETALL DE PRODUCTE -->
   <section style="margin-bottom: 2rem;">
     <h2>1. Detall del Producte Destacat (@Input / @Output)</h2>
     <app-detall-element 
@@ -14,7 +14,7 @@
 
   <hr>
 
-  <!-- SECCIÓN 2: CONTROL DE FLUJO Y SIGNALS -->
+  <!-- SECCIÓ 2: CONTROL DE FLUX I SIGNALS -->
   <section style="margin-top: 2rem; margin-bottom: 2rem;">
     <h2>2. Control de Flux amb Signals i Pipes</h2>
     
@@ -63,15 +63,15 @@
 
   <hr>
 
-  <!-- SECCIÓN 3: FORMULARIO REACTIVO -->
+  <!-- SECCIÓ 3: FORMULARI REACTIU -->
   <section style="margin-top: 2rem; margin-bottom: 2rem;">
-    <h2>3. Formulari d'Alta d'Elements (Reactive Forms)</h2>
+    <h2>3. Formulari d'Alta d'Elements (Reactive Forms & Dynamic Array)</h2>
     <app-formulari-element (elementCreat)="onElementCreat($event)"></app-formulari-element>
   </section>
 
   <hr>
 
-  <!-- SECCIÓN 4: PRÁCTICA INTEGRADA CON FILTROS -->
+  <!-- SECCIÓ 4: PRÀCTICA INTEGRADA CON FILTROS -->
   <section id="contingut-principal" style="margin-top: 2rem;">
     <h2>4. Pràctica Integrada del Catàleg amb Filtres i Accessibilitat</h2>
 
@@ -89,7 +89,7 @@
         <h3>
           Resultats de la cerca:
           <span class="comptador" aria-live="polite">
-            {{ elementsFiltrats.length }} de {{ elements.length }}
+            {{ elementsFiltrats.length }} de {{ elementsSignals().length }}
           </span>
         </h3>
 
@@ -123,7 +123,7 @@
         <p>{{ elementSeleccionat.descripcio }}</p>
         <ul>
           <li><strong>Categoria:</strong> {{ elementSeleccionat.categoria }}</li>
-          <li><strong>Valoració:</strong> {{ elementSeleccionat.valoracio }}/5</li>
+          <li><strong>Valoració:</strong> {{ elementSeleccionat.valoracio || 5 }}/5</li>
         </ul>
         <button type="button" (click)="tancaDetall()">Tanca el detall</button>
       } @else {

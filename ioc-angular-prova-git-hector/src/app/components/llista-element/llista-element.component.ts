@@ -11,7 +11,8 @@ import { TargetaElementComponent } from '../targeta-element/targeta-element.comp
 })
 export class LlistaElementsComponent {
   @Input({ required: true }) elements: Element[] = [];
-  @Input() elementSeleccionatId?: number;
+  //@Input() elementSeleccionatId?: number;
+  @Input() elementSeleccionatId?: number | string;
   @Output() selecciona = new EventEmitter<Element>();
 
   propagaSeleccio(element: Element): void {
