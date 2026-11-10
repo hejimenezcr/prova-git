@@ -1,36 +1,34 @@
-import { Component, signal, OnInit } from '@angular/core';
+import { Component, signal, OnInit, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { 
   CurrencyPipe, 
   DatePipe, 
-  PercentPipe, 
+  //PercentPipe, 
   TitleCasePipe, 
   UpperCasePipe 
 } from '@angular/common';
 
-// Imports de tus componentes generados
-import { TargetaElementComponent } from './components/targeta-element/targeta-element.component';
+//import { TargetaElementComponent } from './components/targeta-element/targeta-element.component';
 import { DetallElementComponent, ElementDetall } from './components/detall-element/detall-element.component';
-import { FormulariElementComponent, NouElement } from './components/formulari-element/formulari-element.component';
+import { FormulariElementComponent } from './components/formulari-element/formulari-element.component';
 import { BarraFiltresComponent, FiltresElement } from './components/barra-filtres-element/barra-filtres-element.component';
 import { LlistaElementsComponent } from './components/llista-element/llista-element.component';
 
-// Imports de modelos y mocks
-import { ELEMENTS_MOCK } from './mocks/dades-mock';
-import { Element, ElementCataleg, EstatLlista } from './models/element.model';
+import { Element, EstatLlista } from './models/element.model';
+import { ElementService } from './services/element.service';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [
     RouterOutlet,
-    TargetaElementComponent,
+    //TargetaElementComponent,
     DetallElementComponent,
     TitleCasePipe,
     UpperCasePipe,
     CurrencyPipe,
     DatePipe,
-    PercentPipe,
+    //PercentPipe,
     FormulariElementComponent,
     BarraFiltresComponent,
     LlistaElementsComponent
@@ -38,11 +36,10 @@ import { Element, ElementCataleg, EstatLlista } from './models/element.model';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
-export class App implements OnInit {
+export class AppComponent implements OnInit {
+  private readonly elementService = inject(ElementService);
 
-  // =========================================================================
-  // SECCIÓN 1: DETALLE DE PRODUCTO (@Input / @Output)
-  // =========================================================================
+  // SECCIÓ 1: DETALL
   elementDetallExemple: ElementDetall = {
     id: 1,
     titol: 'Microscopi Electrònic d\'Alta Resolució',
@@ -65,11 +62,9 @@ export class App implements OnInit {
     console.log('Comparant element:', element.titol);
   }
 
-  // =========================================================================
-  // SECCIÓN 2: CONTROL DE FLUJO CON SIGNALS & PIPES
-  // =========================================================================
+  // SECCIÓ 2: CONTROL DE FLUX AMB SIGNALS
   estatLlista = signal<EstatLlista>('carregant');
-  elementsSignals = signal<ElementCataleg[]>([]);
+  elementsSignals = this.elementService.elements;
   missatgeError = signal<string>('');
 
   ngOnInit(): void {
@@ -78,80 +73,44 @@ export class App implements OnInit {
 
   carregarElements(): void {
     this.estatLlista.set('carregant');
-
+    this.elementService.carregarTot();
     setTimeout(() => {
-      const dadesSimulades: ElementCataleg[] = [
-        {
-          id: 1,
-          titol: 'pack d\'icones vectorials',
-          descripcio: 'Pack d\'icones en format SVG',
-          categoria: 'icones',
-          preu: 29.99,
-          dataActualitzacio: '2025-01-10T09:30:00Z',
-          percentatgeDisponibilitat: 0.95,
-          disponible: true
-        },
-        {
-          id: 2,
-          titol: 'catàleg de colors corporatius',
-          descripcio: 'Paleta de colors per a disseny web',
-          categoria: 'paletes',
-          preu: 49.99,
-          dataActualitzacio: '2025-01-15T10:00:00Z',
-          percentatgeDisponibilitat: 0.85,
-          disponible: true
-        }
-      ];
-
-      this.elementsSignals.set(dadesSimulades);
-      this.estatLlista.set(dadesSimulades.length > 0 ? 'disponible' : 'buit');
-    }, 1200);
+      this.estatLlista.set(this.elementsSignals().length > 0 ? 'disponible' : 'buit');
+    }, 600);
   }
 
   simularEstat(estat: EstatLlista): void {
     this.estatLlista.set(estat);
     if (estat === 'error') {
-      this.missatgeError.set('Error de connexió amb el servidor.');
+      this.missatgeError.set('Error de connexió simulat.');
     }
   }
 
-  // =========================================================================
-  // SECCIÓN 3: FORMULARIO REACTIVO (RECEPTOR)
-  // =========================================================================
-  onElementCreat(nouElement: NouElement): void {
-    console.log('Element rebut del formulari:', nouElement);
+  // SECCIÓ 3: FORMULARI REACTIU
+  onElementCreat(nouElement: any): void {
+    console.log('Element creat des del formulari:', nouElement);
+    const elementFormat: Element = {
+      id: Date.now(),
+      titol: nouElement.titol || nouElement.nom,
+      descripcio: nouElement.descripcio || 'Sense descripció',
+      categoria: nouElement.categoria || 'Electrònica',
+      dataActualitzacio: new Date().toISOString().split('T')[0],
+      preu: nouElement.preu || nouElement.pressupost || 0
+    };
+    this.elementService.afegirElement(elementFormat);
+    this.actualitzaFiltres(this.filtresActuals);
   }
 
-  // =========================================================================
-  // SECCIÓN 4: PRÁCTICA FINAL - FILTROS Y LISTA RESPONSIVE
-  // =========================================================================
-  elements: Element[] = [];
+  // SECCIÓ 4: INTEGRACIÓ AMB FILTRES I ACCESSILIBITAT
   elementsFiltrats: Element[] = [];
   elementSeleccionat: Element | undefined = undefined;
   filtresActuals: FiltresElement = { text: '', categoria: 'Totes' };
-  carregant = signal(true);
-
-  constructor() {
-    setTimeout(() => {
-      this.elements = ELEMENTS_MOCK;
-      this.elementsFiltrats = ELEMENTS_MOCK;
-      this.carregant.set(false);
-    }, 800);
-  }
+  carregant = signal(false);
 
   actualitzaFiltres(filtres: FiltresElement): void {
     this.filtresActuals = filtres;
-    const text = filtres.text.trim().toLocaleLowerCase('ca');
-
-    this.elementsFiltrats = this.elements.filter((element) => {
-      const categoriaCoincideix = filtres.categoria === 'Totes' || element.categoria === filtres.categoria;
-      const textCoincideix = text === '' || this.conteText(element, text);
-      return categoriaCoincideix && textCoincideix;
-    });
-
-    if (this.elementSeleccionat && !this.elementsFiltrats.includes(this.elementSeleccionat)) {
-      this.elementSeleccionat = undefined;
-    }
+    this.elementService.cercar({ terme: filtres.text, categoria: filtres.categoria });
+    this.elementsFiltrats = this.elementService.filtrarPerTextICategoria(filtres.text, filtres.categoria);
   }
 
   seleccionaElement(element: Element): void {
@@ -160,10 +119,5 @@ export class App implements OnInit {
 
   tancaDetall(): void {
     this.elementSeleccionat = undefined;
-  }
-
-  private conteText(element: Element, text: string): boolean {
-    const contingut = `${element.titol} ${element.descripcio}`.toLocaleLowerCase('ca');
-    return contingut.includes(text);
   }
 }
